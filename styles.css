@@ -1,0 +1,224 @@
+@font-face {
+  font-family: 'MyFont2';
+  src: url('font/p5hatty-1.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('font/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-image: url('54obu7eenrq61.gif');
+  background-repeat: repeat;
+  padding-top: 50px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+ 
+}
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Warna latar belakang navbar */
+  height: 60px; /* Set tinggi navbar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'MyFont2', sans-serif;
+  font-size: 25px;
+  gap: 40px; /* jarak antar menu */
+}
+
+.link-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-right: 0; /* hapus margin manual */
+  margin-left: 0px;
+
+  .fallback {
+    font-size: 2.25em;
+    letter-spacing: 4px;
+    line-height: 0;
+    opacity: 0;
+    position: relative;
+    top: 15px;
+    left: 0;
+  }
+  .shape-wrapper { 
+    display: none; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  &:hover {
+    z-index: 9999;
+    .shape-wrapper { 
+      transform: rotate(-6deg);
+      display: block; 
+      .shape.cyan-fill {
+        transform: scale(3,.1);
+      }
+    }
+    .img-wrapper {
+      img {
+       animation: tiltBounce .15s ease;
+       animation-fill-mode: forwards;
+       display: block;
+        &.normal {
+           mix-blend-mode: darken;
+        }
+      }
+    }
+  }
+  &:nth-child(even) {
+    &:hover {
+      .shape-wrapper { transform: rotate(11deg) }
+      .img-wrapper img {
+         animation: tiltBounceAlt .15s ease;
+         animation-fill-mode: forwards;
+      }
+    }
+  }
+}
+
+.img-wrapper {
+  img {
+    width: 130px;
+    height: 50px; /* Samakan dengan tinggi navbar */
+    display: block;
+    object-fit: contain;
+    left: 0;
+    right: 0;
+    top: -5px;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 999;
+    &.normal {
+      display: fixed;
+    }
+    &.active {
+      display: none;
+      z-index: -1;
+    }
+  }
+}
+.shape-wrapper {
+  filter: sepia(50%) saturate(3);
+  .shape {
+    transition: all .1s linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    overflow: hidden;
+    svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    &.cyan-fill {
+      mix-blend-mode: screen;
+      animation-delay: 0.05s;
+      animation-duration: .4s;
+    }
+    &.red-fill {
+      animation-duration: .45s;
+      animation-delay: 0.08s;
+      opacity: .8;
+    }
+  }
+}
+
+
+.jelly {
+  -webkit-animation-name: jelly;
+          animation-name: jelly;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@keyframes tiltBounce {
+  0% {
+    transform: scale(1) rotate(-7deg);
+  }
+  50% {
+    transform: scale(1.5) rotate(-7deg);
+  }
+  100% {
+    transform: scale(1.15) rotate(-7deg);
+  }
+}
+@keyframes tiltBounceAlt {
+  0% {
+    transform: scale(1) rotate(7deg);
+  }
+  50% {
+    transform: scale(1.5) rotate(7deg);
+  }
+  100% {
+    transform: scale(1.15) rotate(7deg);
+  }
+}
+@keyframes jelly {
+  0% {
+    width: 100%; transform: scale(1.25,1) skewX(20deg) translateY(3px) rotateX(40deg) rotateY(10deg) rotateZ(-10deg);
+  }
+  50% { width: 100%; transform: scale(1.25,1.1) skewX(-15deg) translateY(-2px) translateZ(-30px); }
+  100% { width: 100%; transform: scale(1.25,1) skewX(20deg) translateY(3px) rotateX(-40deg) rotateY(-10deg) rotateZ(-15deg); }
+}
+
+.login-link {
+  margin-left: auto;
+  margin-right: 40px; /* opsional, beri jarak dari kanan */
+}
+.start{
+
+  position: absolute;
+  margin: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  text-align: center;
+  font-family: 'MyFont2', sans-serif;
+  color: #000000;
+  font-size: 35px;
+  font-weight: normal;
+  background: #fffefe;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  border-radius: 20px;
+  animation: showUp 0.5s ease;
+
+}
+
+@keyframes showUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+
+}
